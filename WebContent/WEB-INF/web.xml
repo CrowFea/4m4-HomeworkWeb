@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>stu1</display-name>
- 
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -31,9 +30,19 @@
     <servlet-name>AddUSerServlet</servlet-name>
     <servlet-class>com.crowfea.AddUserServlet</servlet-class>
   </servlet>
-   <servlet>
-  <display-name>LoginServlet</display-name>
-  <servlet-name>LoginServlet</servlet-name>
-  <servlet-class>com.crowfea.LoginServlet</servlet-class>
+  <servlet>
+    <display-name>LoginServlet</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.crowfea.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <display-name>ClazzAddServlet</display-name>
+    <servlet-name>ClazzAddServlet</servlet-name>
+    <servlet-class>com.crowfea.ClazzAddServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <display-name>ClazzShowServlet</display-name>
+    <servlet-name>ClazzShowServlet</servlet-name>
+    <servlet-class>com.crowfea.ClazzShowServlet</servlet-class>
   </servlet>
 </web-app>

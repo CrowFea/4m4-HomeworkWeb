@@ -9,10 +9,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <base herf="<%=basePath %>"> <!-- 链接到css样式  -->
 	<meta charset="utf-8">
-	<title>同济大学作业网</title>
+	<title>DDLhub</title>
 	<meta name="keywords" content="作业提交" />
 	<meta name="description" content="同济大学作业提交" />
 	<link rel="stylesheet" type="text/css" href="<%=basePath %>/css/register-login.css">
+	<link rel="shortcut icon" href="<%=basePath %>/image/icon.ico"/>
 </head>
 </head>
 
@@ -21,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="box"></div>
 <div class="cent-box">
 	<div class="cent-box-header">
-		<h1 class="main-title hide">四毛四</h1>
+		<h1 class="main-title hide">DDLhub</h1>
 		<h2 class="sub-title">今天有DDL吗</h2>
 	</div>
 
@@ -62,8 +63,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 
 <div class="footer">
-	<p>四毛四</p>
-	<p>Designed By crowfea 2019</p>
+	<p>DDLhub</p>
+	<p>Designed By crowfea 刘思源 2019</p>
 </div>
 
 <script src='<%=basePath %>/js/particles.js' type="text/javascript"></script>

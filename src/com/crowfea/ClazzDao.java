@@ -1,31 +1,54 @@
 package com.crowfea;
 
+import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDao extends DBOper{
+public class ClazzDao extends DBOper{
+	public void createTable(String stuid) {
+		
+		 Statement stmt = null;
+		 try {
+			stmt = conn.createStatement();
+			String table="stu"+stuid;
+			String sql = "CREATE TABLE IF NOT EXISTS `table`(`clazzid` varchar(50) NOT NULL ,"
+					+ "`clazzname` varchar(50) COLLATE utf8_unicode_ci NOT NULL,"
+					+ "`teaname` varchar(50) COLLATE utf8_unicode_ci NOT NULL,"
+					+ "PRIMARY KEY (`clazzid`)) "
+					+ "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+			
+			
+			sql=sql.replace("table", table);
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		//this.executeQuery(sql,null);
+		
+	}
+	
     //获取用户列表
-    public List<User> getUser(){
-        List<User>userList = new ArrayList<User>();
-        User user = new User();
+    public List<Clazz> getClazz(String stuid){
+    	List<Clazz>clazzList = new ArrayList<Clazz>();
+        Clazz clazz = new Clazz();
         String sql = "SELECT * FROM user";
         try{
             ResultSet rs = this.executeQuery(sql,null);
             while(rs.next()){
-                user.setUsername(rs.getString("username"));
-                user.setUserpass(rs.getString("userpass"));
-                user.setLognum(rs.getInt("lognum"));
-                user.setRegtime(rs.getString("regtime"));
-                userList.add(user);
+                clazz.setClazzid(rs.getString("username"));
+                clazz.setClazzname(rs.getString("password"));
+                clazz.setTeaname(rs.getString("category"));
+                clazzList.add(clazz);
             }
-
         }catch(SQLException e){
             e.printStackTrace();
         }finally{
             this.closeAll();
         }
-        return userList;
+        return clazzList;
     }
     //根据用户名获取用户
     public User getUserByName(String name){
@@ -64,57 +87,33 @@ public class UserDao extends DBOper{
         return r;
 
     }
-    //添加用户
-    public boolean addUser(User user){
-        boolean r = false;
+    //添加课程
+    public boolean addClazz(String stuid,Clazz clazz){
+    	
+       boolean r = false;
+       createTable(stuid);
+       String table="stu"+stuid;
+        String sql = "INSERT INTO table (clazzid,clazzname,teaname)VALUES(?,?,?) ";
+        sql=sql.replace("table",table);
         
-        
-        //插入到user
-        String sql = "INSERT INTO user (username,password,category)VALUES(?,?,?) ";
         try{
-            int num = this.executeUpdate(sql,new String[]{user.getUsername(),user.getUserpass(),user.getCategory()});
+            int num = this.executeUpdate(sql,new String[]{clazz.getClazzid(),clazz.getClazzname(),clazz.getTeaname()});
             if(num > 0){
                 r = true;
             }
         }catch(Exception e){
             e.printStackTrace();
         }
-        //插入到teaAll或者stuALL
-        if(user.getCategory().equals("教师")) {
-        	sql = "INSERT INTO teaAll (id,name,school)VALUES(?,?,?) ";
-            try{
-                int num = this.executeUpdate(sql,new String[]{user.getUsername(),user.getName(),user.getSchool()});
-                if(num > 0){
-                    r = true;
-                }
-            }catch(Exception e){
-                e.printStackTrace();
-            }finally{
-                this.closeAll();
-            }
-        }
-        else if(user.getCategory().equals("学生")) {
-        	sql = "INSERT INTO stuAll (id,name,school)VALUES(?,?,?) ";
-            try{
-                int num = this.executeUpdate(sql,new String[]{user.getUsername(),user.getName(),user.getSchool()});
-                if(num > 0){
-                    r = true;
-                }
-            }catch(Exception e){
-                e.printStackTrace();
-            }finally{
-                this.closeAll();
-            }
-        }
+        
 
         return r;
     }
-    //删除指定用户
-    public boolean delUser(String name){
+    //删除课程
+    public boolean delClazz(String stuid,Clazz clazz){
         boolean r = false;
-        String sql = "DELETE FROM tb_user WHERE username = ?";
+        String sql = "DELETE FROM stu"+stuid+" WHERE clazzid = ?";
         try{
-            int num = this.executeUpdate(sql,new String[]{name});
+            int num = this.executeUpdate(sql,new String[]{clazz.getClazzid()});
             if(num > 0){
                 r = true;
             }

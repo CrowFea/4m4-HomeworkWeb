@@ -71,7 +71,10 @@ public class LoginServlet extends HttpServlet {
                 cookie.setMaxAge(60*60*24*30);
                 response.addCookie(cookie);
                 
-                response.sendRedirect("pages/stuMain.html");
+                request.setAttribute("stuid", username);  
+                request.getRequestDispatcher("pages/Test.jsp").forward(request, response);  
+                
+                response.sendRedirect("pages/Test.jsp");
             }else{
             	out.print("<script>alert('请输入正确的账号密码');window.location.href='index.jsp'</script>");
             	

@@ -30,31 +30,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="slide-bar slide-bar1"></div>				
 			</div>
 		</div>
-		<form action = "<%=basePath %>/AddUserServlet" method = "POST">
+		<form action = "<%=basePath %>/ClazzAddServlet" method = "POST">
 		<div class="login form">
 		
 			<div class="group">
 				
-				
+				<div class="group-ipt category">
+					<input type="text" name="clazzid" id="clazzid" class="ipt" placeholder="请输入课号" required>
+				</div>
 				<div class="group-ipt user">
-					<input type="text" name="username" id="username" class="ipt" placeholder="请输入学号或工号" required>
+					<input type="text" name="clazzname" id="clazzname" class="ipt" placeholder="请输入课程名称" required>
 				</div>
 				<div class="group-ipt name">
-					<input type="text" name="name" id="name" class="ipt" placeholder="请输入姓名" required>
+					<input type="text" name="teaname" id="teaname" class="ipt" placeholder="请输入教师姓名" required>
 				</div>
-				<div class="group-ipt category">
-					<input type="text" name="category" id="category" class="ipt" placeholder="请输入身份：教师  or 学生" required>
-				</div>
-				<div class="group-ipt school">
-					<input type="text" name="school" id="school" class="ipt" placeholder="请输入学院" required>
+				<div class="group-ipt name">
+					<input type="text" name="stuid" id="stuid" class="ipt" placeholder="请输入你的学号" required>
 				</div>
 				
-				<div class="group-ipt password">
-					<input type="password" name="userpass" id="userpass" class="ipt" placeholder="设置登录密码" required>
-				</div>
-				<div class="group-ipt password1">
-					<input type="password" name="userpass1" id="userpass1" class="ipt" placeholder="重复密码" required>
-				</div>
+				
 				
 			</div>
 		</div>
