@@ -58,11 +58,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<label class="forgot-password">
 				<a href="<%=basePath %>/pages/forgetpass.jsp">忘记密码？</a>
 			</label>
+		</div>
+		
+		<div class="remember clearfix">
+			<label class="remember-me"><span class="icon"><span class="zt"></span></span><input type="checkbox" name="remember-me" id="remember-me" class="remember-mecheck" checked>记住我</label>
 			<label class="forgot-password">
 				<a href="<%=basePath %>/pages/Logout.jsp">注销</a>
 			</label>
 		</div>
-
 	</div>
 </div>
 

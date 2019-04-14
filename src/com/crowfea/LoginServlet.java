@@ -5,7 +5,9 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -71,7 +73,15 @@ public class LoginServlet extends HttpServlet {
                 cookie.setMaxAge(60*60*24*30);
                 response.addCookie(cookie);
                 
-                request.setAttribute("stuid", username);  
+                
+                ClazzDao dao = new ClazzDao();
+                dao.getConn(server, dbname, dbuser, dbpwd);
+                
+                List<Clazz> clazzList = new ArrayList<Clazz>();
+                clazzList=dao.getClazz(username);
+                
+                out.print("<script>alert('µÇÂ½³É');window.location.href='Login.jsp'</script>");
+                request.setAttribute("clazzList", clazzList);  
                 request.getRequestDispatcher("pages/Test.jsp").forward(request, response);  
                 
                 response.sendRedirect("pages/Test.jsp");

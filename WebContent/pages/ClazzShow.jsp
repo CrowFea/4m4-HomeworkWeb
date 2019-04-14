@@ -39,16 +39,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		</tr>
   		
   		<%
-  			int i=0;
-  		while(i<clazzList.size()){
-  		
+  			for(int i = 0;i<clazzList.size();i++){
   				Clazz clazz =(Clazz) clazzList.get(i);%>
   				<tr>
   				<th><%=clazz.getClazzid() %></th>
   				<th><%=clazz.getClazzname()%></th>
   				<th><%=clazz.getTeaname()%></th>
-  				</tr>
-  				<%i++; %>
   			
   		<% }
   		 %>

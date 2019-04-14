@@ -2,31 +2,25 @@ package com.crowfea;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ClazzServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet("/ClazzAddServlet")
-public class ClazzAddServlet extends HttpServlet {
+@WebServlet("/LogoutServlet")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ClazzAddServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,10 +40,10 @@ public class ClazzAddServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset = UTF-8");
-        String clazzid = request.getParameter("clazzid");
-        String clazzname = request.getParameter("clazzname");
-        String teaname = request.getParameter("teaname");
-        String stuid=request.getParameter("stuid");
+      
+        String username = request.getParameter("username");
+        String userpass=request.getParameter("userpass");
+        String category=request.getParameter("category");
         
         PrintWriter out = response.getWriter();
         ServletContext ctx = this.getServletContext();
@@ -57,23 +51,26 @@ public class ClazzAddServlet extends HttpServlet {
         String dbname = ctx.getInitParameter("dbname");
         String dbuser = ctx.getInitParameter("dbuser");
         String dbpwd = ctx.getInitParameter("dbpwd");
-        Clazz clazz=new Clazz();
-        clazz.setClazzid(clazzid);
-        clazz.setClazzname(clazzname);
-        clazz.setTeaname(teaname);
+       
+        
+        User user = new User();
+        user.setUsername(username);
+        user.setUserpass(userpass);
+        user.setCategory(category);
+    
         
         //user.setRole(Integer.parseInt(role));
         
        
         
-        ClazzDao dao = new ClazzDao();
+        UserDao dao = new UserDao();
         dao.getConn(server, dbname, dbuser, dbpwd);
-        out.print("链接成功！");
-        if(dao.addClazz(stuid,clazz)){
-            out.print("添加成功！");
+       
+        if(dao.delUser(user)){
+        	out.print("<script>alert('删除成功');window.location.href='Logout.jsp'</script>");
         }
         else{
-            out.print("添加失败！");
+        	out.print("<script>alert('删除失败');window.location.href='Logout.jsp'</script>");
         }
 	}
 

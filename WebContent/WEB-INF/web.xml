@@ -45,4 +45,14 @@
     <servlet-name>ClazzShowServlet</servlet-name>
     <servlet-class>com.crowfea.ClazzShowServlet</servlet-class>
   </servlet>
+  <servlet>
+    <display-name>ResetPassServlet</display-name>
+    <servlet-name>ResetPassServlet</servlet-name>
+    <servlet-class>com.crowfea.ResetPassServlet</servlet-class>
+  </servlet>
+    <servlet>
+    <display-name>LogoutServlet</display-name>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.crowfea.LogoutServlet</servlet-class>
+  </servlet>
 </web-app>

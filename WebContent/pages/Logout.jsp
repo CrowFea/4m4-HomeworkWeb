@@ -29,13 +29,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="cont-main clearfix">
 		<div class="index-tab">
 			<div class="index-slide-nav">
-				<a href="<%=basePath %>/pages/Login.jsp" class="active">登录</a>
-				<a href="<%=basePath %>/pages/register.jsp">注册</a>
+			
+				<a href="<%=basePath %>/pages/register.jsp">注销</a>
 				<div class="slide-bar"></div>				
 			</div>
 		</div>
 		
-		<form method="post" action="<%=basePath %>/LoginServlet">
+		<form method="post" action="<%=basePath %>/LogoutServlet">
 		<div class="login form">
 			<div class="group">
 				<div class="group-ipt email">
@@ -44,25 +44,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="group-ipt password">
 					<input type="password" name="userpass" id="userpass" class="ipt" placeholder="输入您的登录密码" required>
 				</div>
-				
+				<div class="group-ipt catgory">
+					<input type="text" name="category" id="category" class="ipt" placeholder="请输入身份：教师  or 学生" required>
+				</div>
 			</div>
 		
 		</div>
 		
 		<div class="button">
-			<button type="submit" class="login-btn register-btn" id="button">登录</button>
+			<button type="submit" class="login-btn register-btn" id="button">注销</button>
 		</div>
 		</form>
-		<div class="remember clearfix">
-			<label class="remember-me"><span class="icon"><span class="zt"></span></span><input type="checkbox" name="remember-me" id="remember-me" class="remember-mecheck" checked>记住我</label>
-			<label class="forgot-password">
-				<a href="<%=basePath %>/pages/forgetpass.jsp">忘记密码？</a>
-			</label>
-			<label class="forgot-password">
-				<a href="<%=basePath %>/pages/Logout.jsp">注销</a>
-			</label>
-		</div>
-
+		
 	</div>
 </div>
 

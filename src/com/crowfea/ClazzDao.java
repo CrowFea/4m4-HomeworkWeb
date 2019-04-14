@@ -35,12 +35,14 @@ public class ClazzDao extends DBOper{
     	List<Clazz>clazzList = new ArrayList<Clazz>();
         Clazz clazz = new Clazz();
         String sql = "SELECT * FROM user";
+        String table="stu"+stuid;
+        sql=sql.replace("user", table);
         try{
             ResultSet rs = this.executeQuery(sql,null);
             while(rs.next()){
-                clazz.setClazzid(rs.getString("username"));
-                clazz.setClazzname(rs.getString("password"));
-                clazz.setTeaname(rs.getString("category"));
+                clazz.setClazzid(rs.getString("clazzid"));
+                clazz.setClazzname(rs.getString("clazzname"));
+                clazz.setTeaname(rs.getString("teaname"));
                 clazzList.add(clazz);
             }
         }catch(SQLException e){

@@ -66,10 +66,12 @@ package com.crowfea;
         UserDao dao = new UserDao();
         dao.getConn(server, dbname, dbuser, dbpwd);
         if(dao.addUser(user)){
-            out.print("×¢²á³É¹¦£¡");
+            out.print("<script>alert('×¢²á³É¹¦');window.location.href='Login.jsp'</script>");
+            response.sendRedirect("pages/Login.jsp");
         }
         else{
-            out.print("×¢²áÊ§°Ü£¡");
+            out.print("<script>alert('×¢²áÊ§°Ü');window.location.href='Login.jsp'</script>");
+            response.sendRedirect("pages/register.jsp");
         }
 
 
