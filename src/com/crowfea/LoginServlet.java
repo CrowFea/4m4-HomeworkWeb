@@ -5,7 +5,9 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -71,7 +73,18 @@ public class LoginServlet extends HttpServlet {
                 cookie.setMaxAge(60*60*24*30);
                 response.addCookie(cookie);
                 
-                response.sendRedirect("pages/stuMain.html");
+                
+                ClazzDao dao = new ClazzDao();
+                dao.getConn(server, dbname, dbuser, dbpwd);
+                
+                List<Clazz> clazzList = new ArrayList<Clazz>();
+                clazzList=dao.getClazz(username);
+                
+                out.print("<script>alert('登陆成');window.location.href='Login.jsp'</script>");
+                request.setAttribute("clazzList", clazzList);  
+                request.getRequestDispatcher("pages/Test.jsp").forward(request, response);  
+                
+                response.sendRedirect("pages/Test.jsp");
             }else{
             	out.print("<script>alert('请输入正确的账号密码');window.location.href='index.jsp'</script>");
             	

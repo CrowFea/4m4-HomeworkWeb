@@ -30,7 +30,7 @@ public class UserDao extends DBOper{
     //根据用户名获取用户
     public User getUserByName(String name){
         User user = null;
-        String sql = "SELECT * FROM tb_user WHERE　username = ?";
+        String sql = "SELECT * FROM user WHERE　username = ?";
         try{            
             ResultSet rs = this.executeQuery(sql, new String[]{name});
             if(rs.next()){
@@ -50,17 +50,16 @@ public class UserDao extends DBOper{
     //修改用户信息
     public boolean editUser(User user){
         boolean r = false;
-        String sql = "UPDATE tb_user SET userpass = ?,role = ?,regtime = ?,lognum = ? WHERE username = ?";
+        String sql = "UPDATE user SET password = ? WHERE username = ?";
         try{
-            int num = this.executeUpdate(sql, new String[]{user.getUserpass(),""+user.getLognum(),user.getRegtime(),user.getUsername()});
+            int num = this.executeUpdate(sql, new String[]{user.getUserpass(),user.getUsername()});
             if(num > 0){
                 r = true;
             }
         }catch(Exception e){
             e.printStackTrace();
-        }finally{
-            this.closeAll();
         }
+        
         return r;
 
     }
@@ -110,11 +109,36 @@ public class UserDao extends DBOper{
         return r;
     }
     //删除指定用户
-    public boolean delUser(String name){
+    public boolean delUser(User user){
         boolean r = false;
-        String sql = "DELETE FROM tb_user WHERE username = ?";
+        String sql = "DELETE FROM user WHERE username = ?";
+        if(user.getCategory().equals("教师")) {
+        	sql = "DELETE FROM teaAll WHERE username = ?";
+            try{
+                int num = this.executeUpdate(sql,new String[]{user.getUsername()});
+                if(num > 0){
+                    r = true;
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        else if(user.getCategory().equals("学生")) {
+        	sql = "DELETE FROM stuAll WHERE username = ? ";
+            try{
+                int num = this.executeUpdate(sql,new String[]{user.getUsername()});
+                if(num > 0){
+                    r = true;
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        
+        
+         sql = "DELETE FROM user WHERE username = ?";
         try{
-            int num = this.executeUpdate(sql,new String[]{name});
+            int num = this.executeUpdate(sql,new String[]{user.getUsername()});
             if(num > 0){
                 r = true;
             }
@@ -125,4 +149,7 @@ public class UserDao extends DBOper{
         }
         return r;
     }
+    
+    
+    
 }

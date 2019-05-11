@@ -25,12 +25,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="cont-main clearfix">
 		<div class="index-tab">
 			<div class="index-slide-nav">
-				<a href="<%=basePath %>/pages/Login.jsp">登录</a>
-				<a href="<%=basePath %>/pages/register.jsp" class="active">注册</a>
+				
+				<a href="<%=basePath %>/pages/register.jsp" class="active">修改密码</a>
 				<div class="slide-bar slide-bar1"></div>				
 			</div>
 		</div>
-		<form action = "<%=basePath %>/AddUserServlet" method = "POST">
+		<form action = "<%=basePath %>/ResetPassServlet" method = "POST">
 		<div class="login form">
 		
 			<div class="group">
@@ -39,18 +39,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="group-ipt user">
 					<input type="text" name="username" id="username" class="ipt" placeholder="请输入学号或工号" required>
 				</div>
-				<div class="group-ipt name">
-					<input type="text" name="name" id="name" class="ipt" placeholder="请输入姓名" required>
-				</div>
-				<div class="group-ipt category">
-					<input type="text" name="category" id="category" class="ipt" placeholder="请输入身份：教师  or 学生" required>
-				</div>
-				<div class="group-ipt school">
-					<input type="text" name="school" id="school" class="ipt" placeholder="请输入学院" required>
-				</div>
+				
 				
 				<div class="group-ipt password">
-					<input type="password" name="userpass" id="userpass" class="ipt" placeholder="设置登录密码" required>
+					<input type="password" name="userpass" id="userpass" class="ipt" placeholder="设置新的密码" required>
 				</div>
 				<div class="group-ipt password1">
 					<input type="password" name="userpass1" id="userpass1" class="ipt" placeholder="重复密码" required>
